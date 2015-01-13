@@ -1,0 +1,4 @@
+<resources>
+    <dimen name="row_height">72dp</dimen>
+    <dimen name="margin_standard">16dp</dimen>
+</resources>
