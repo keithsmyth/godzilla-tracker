@@ -16,10 +16,10 @@ import java.util.List;
  */
 public class QuakeAdapter extends RecyclerView.Adapter<QuakeAdapter.QuakeViewHolder> {
 
-  private final List<Quake> mEarthQuakes;
+  private final List<Quake> quakeList;
 
-  public QuakeAdapter(List<Quake> mEarthQuakes) {
-    this.mEarthQuakes = mEarthQuakes;
+  public QuakeAdapter(List<Quake> quakeList) {
+    this.quakeList = quakeList;
   }
 
   @Override public QuakeViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
@@ -29,11 +29,11 @@ public class QuakeAdapter extends RecyclerView.Adapter<QuakeAdapter.QuakeViewHol
   }
 
   @Override public void onBindViewHolder(QuakeViewHolder quakeViewHolder, int i) {
-    quakeViewHolder.bind(mEarthQuakes.get(i));
+    quakeViewHolder.bind(quakeList.get(i));
   }
 
   @Override public int getItemCount() {
-    return mEarthQuakes.size();
+    return quakeList.size();
   }
 
   public static class QuakeViewHolder extends RecyclerView.ViewHolder {
