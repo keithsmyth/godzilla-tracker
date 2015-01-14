@@ -1,6 +1,7 @@
 package com.keithsmyth.godzillatracker.ui;
 
 import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -9,14 +10,14 @@ import android.widget.Toast;
 import com.keithsmyth.godzillatracker.R;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends ActionBarActivity implements MapFragment.MapFragmentListener {
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
     if (savedInstanceState == null) {
       getSupportFragmentManager().beginTransaction()
-          .add(R.id.container, new MapFragment())
+          .add(R.id.container, new MapFragment(), MapFragment.class.getName())
           .commit();
     }
   }
@@ -33,5 +34,13 @@ public class MainActivity extends ActionBarActivity {
     }
 
     return super.onOptionsItemSelected(item);
+  }
+
+  @Override public void onListButtonClick() {
+    getSupportFragmentManager().beginTransaction()
+        .setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit)
+        .replace(R.id.container, new QuakesFragment())
+        .addToBackStack(QuakesFragment.class.getName())
+        .commit();
   }
 }

@@ -23,7 +23,7 @@ import java.util.List;
 /**
  * @author keithsmyth
  */
-public class MainFragment extends Fragment {
+public class QuakesFragment extends Fragment {
 
   private RecyclerView mQuakeRecyclerView;
   private View mEmptyView;
@@ -31,7 +31,7 @@ public class MainFragment extends Fragment {
 
   @Override public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                                      @Nullable Bundle savedInstanceState) {
-    View view = inflater.inflate(R.layout.fragment_main, container, false);
+    View view = inflater.inflate(R.layout.fragment_quakes, container, false);
     mQuakeRecyclerView = (RecyclerView) view.findViewById(R.id.lst_quakes);
     mQuakeRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     mQuakeRecyclerView.setHasFixedSize(true);

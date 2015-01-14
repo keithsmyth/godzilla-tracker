@@ -1,5 +1,6 @@
 package com.keithsmyth.godzillatracker.ui;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -29,11 +30,31 @@ import java.util.List;
 public class MapFragment extends Fragment {
 
   private GoogleMap mMap;
+  private MapFragmentListener mListener;
 
   @Override public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                                      @Nullable Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.fragment_map, container, false);
+    view.findViewById(R.id.btn_list).setOnClickListener(new View.OnClickListener() {
+      @Override public void onClick(View v) {
+        mListener.onListButtonClick();
+      }
+    });
     return view;
+  }
+
+  @Override public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    super.onViewCreated(view, savedInstanceState);
+    tryCreateMap();
+  }
+
+  @Override public void onAttach(Activity activity) {
+    super.onAttach(activity);
+    if (activity instanceof MapFragmentListener) {
+      mListener = (MapFragmentListener) activity;
+    } else {
+      throw new ClassCastException("Activity required to be of type MapFragmentListener");
+    }
   }
 
   @Override public void onStart() {
@@ -49,17 +70,31 @@ public class MapFragment extends Fragment {
     });
   }
 
-  private void trySetupMap(List<Quake> quakeList) {
+  private void tryCreateMap() {
     if (mMap == null) {
-      mMap = ((SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map))
-          .getMap();
-      if (mMap != null) {
-        setupMap(quakeList);
+      SupportMapFragment fragment = getMapFragment();
+
+      if (fragment == null) {
+        fragment = SupportMapFragment.newInstance();
+        getChildFragmentManager().beginTransaction()
+            .add(R.id.map, fragment)
+            .commit();
       }
     }
   }
 
-  private void setupMap(List<Quake> quakeList) {
+  private SupportMapFragment getMapFragment() {
+    return (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
+  }
+
+  private void trySetupMap(List<Quake> quakeList) {
+    if (mMap == null) {
+      SupportMapFragment fragment = getMapFragment();
+      if (fragment != null) {
+        mMap = fragment.getMap();
+      }
+      if (mMap == null) return;
+    }
     List<LatLng> points = new ArrayList<>();
     for (Quake quake : quakeList) {
       points.add(new LatLng(quake.lat, quake.lon));
@@ -69,5 +104,9 @@ public class MapFragment extends Fragment {
         .build();
     mMap.addTileOverlay(new TileOverlayOptions().tileProvider(provider));
     mMap.addMarker(new MarkerOptions().position(new LatLng(0, 0)).title("Marker"));
+  }
+
+  public interface MapFragmentListener {
+    void onListButtonClick();
   }
 }

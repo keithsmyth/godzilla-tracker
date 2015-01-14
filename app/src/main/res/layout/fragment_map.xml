@@ -1,12 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent">
 
-    <fragment
+    <FrameLayout
         android:id="@+id/map"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:name="com.google.android.gms.maps.SupportMapFragment"/>
+        android:layout_height="match_parent"/>
+
+    <com.keithsmyth.godzillatracker.ui.widget.FloatingActionButton
+        android:id="@+id/btn_list"
+        android:layout_width="@dimen/fab_size"
+        android:layout_height="@dimen/fab_size"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_margin="@dimen/margin_standard"
+        android:background="@drawable/fab_background">
+
+        <ImageView
+            android:layout_width="@dimen/fab_icon_size"
+            android:layout_height="@dimen/fab_icon_size"
+            android:layout_gravity="center"
+            android:duplicateParentState="true"
+            android:src="@drawable/ic_menu_paste_holo_dark"
+            tools:ignore="ContentDescription"/>
+    </com.keithsmyth.godzillatracker.ui.widget.FloatingActionButton>
 
 </FrameLayout>
