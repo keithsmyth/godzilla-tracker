@@ -6,6 +6,8 @@ import retrofit.Callback;
 import retrofit.http.GET;
 
 /**
+ * Retrofit service interface
+ *
  * @author keithsmyth
  */
 public interface SeismicService {

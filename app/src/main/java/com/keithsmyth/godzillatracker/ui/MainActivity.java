@@ -1,7 +1,6 @@
 package com.keithsmyth.godzillatracker.ui;
 
 import android.os.Bundle;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -9,7 +8,9 @@ import android.widget.Toast;
 
 import com.keithsmyth.godzillatracker.R;
 
-
+/**
+ * @author keithsmyth
+ */
 public class MainActivity extends ActionBarActivity implements MapFragment.MapFragmentListener {
 
   @Override protected void onCreate(Bundle savedInstanceState) {

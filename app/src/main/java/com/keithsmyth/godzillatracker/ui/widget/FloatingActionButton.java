@@ -11,6 +11,8 @@ import android.view.ViewOutlineProvider;
 import android.widget.FrameLayout;
 
 /**
+ * Generic Floating Action Button adapted from the Google IO Scheduling app
+ *
  * @author keithsmyth
  */
 public class FloatingActionButton extends FrameLayout {

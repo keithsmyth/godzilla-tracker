@@ -12,6 +12,8 @@ import com.keithsmyth.godzillatracker.models.Quake;
 import java.util.List;
 
 /**
+ * RecyclerAdapter to display a simple list of Quakes
+ *
  * @author keithsmyth
  */
 public class QuakeAdapter extends RecyclerView.Adapter<QuakeAdapter.QuakeViewHolder> {
@@ -36,6 +38,11 @@ public class QuakeAdapter extends RecyclerView.Adapter<QuakeAdapter.QuakeViewHol
     return quakeList.size();
   }
 
+  /**
+   * ViewHolder implementation for {@code QuakeAdapter}
+   *
+   * @author keithsmyth
+   */
   public static class QuakeViewHolder extends RecyclerView.ViewHolder {
 
     private final TextView mTitleText;

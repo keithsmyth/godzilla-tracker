@@ -104,7 +104,6 @@ public class MapFragment extends Fragment {
         .weightedData(points)
         .build();
     mMap.addTileOverlay(new TileOverlayOptions().tileProvider(provider));
-    mMap.addMarker(new MarkerOptions().position(new LatLng(0, 0)).title("Marker"));
   }
 
   public interface MapFragmentListener {

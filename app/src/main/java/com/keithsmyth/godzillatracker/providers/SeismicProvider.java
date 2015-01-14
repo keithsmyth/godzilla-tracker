@@ -9,6 +9,8 @@ import retrofit.client.Response;
 
 /**
  * Abstraction layer between the data retrieval (retrofit api) and calling entity
+ * <p/>
+ * If we wanted several different implementations of this class an interface would be created
  *
  * @author keithsmyth
  */
@@ -30,6 +32,11 @@ public class SeismicProvider {
     return mSeismicService;
   }
 
+  /**
+   * Returns all the recent earthquake information available
+   *
+   * @param callback generic {@code Callback} to facilitate success and fail scenarios
+   */
   public void getRecentQuakes(final Callback<Seismic> callback) {
     getSeismicService().getRecentQuakes(new retrofit.Callback<Seismic>() {
       @Override public void success(Seismic seismic, Response response) {
