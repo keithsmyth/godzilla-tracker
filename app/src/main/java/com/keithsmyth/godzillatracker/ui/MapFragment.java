@@ -15,6 +15,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.TileOverlayOptions;
 import com.google.maps.android.heatmaps.HeatmapTileProvider;
+import com.google.maps.android.heatmaps.WeightedLatLng;
 import com.keithsmyth.godzillatracker.App;
 import com.keithsmyth.godzillatracker.R;
 import com.keithsmyth.godzillatracker.models.Quake;
@@ -95,12 +96,12 @@ public class MapFragment extends Fragment {
       }
       if (mMap == null) return;
     }
-    List<LatLng> points = new ArrayList<>();
+    List<WeightedLatLng> points = new ArrayList<>();
     for (Quake quake : quakeList) {
-      points.add(new LatLng(quake.lat, quake.lon));
+      points.add(new WeightedLatLng(new LatLng(quake.lat, quake.lon), quake.magnitude));
     }
     HeatmapTileProvider provider = new HeatmapTileProvider.Builder()
-        .data(points)
+        .weightedData(points)
         .build();
     mMap.addTileOverlay(new TileOverlayOptions().tileProvider(provider));
     mMap.addMarker(new MarkerOptions().position(new LatLng(0, 0)).title("Marker"));
