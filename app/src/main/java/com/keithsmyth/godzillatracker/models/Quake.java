@@ -10,4 +10,6 @@ public class Quake {
   public Double magnitude;
   public Double depth;
   public String region;
+  public Double lat;
+  public Double lon;
 }
