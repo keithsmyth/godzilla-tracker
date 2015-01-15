@@ -18,6 +18,7 @@ import com.keithsmyth.godzillatracker.models.Quake;
 import com.keithsmyth.godzillatracker.models.Seismic;
 import com.keithsmyth.godzillatracker.providers.Callback;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -51,6 +52,7 @@ public class QuakesFragment extends Fragment {
 
       @Override public void onFail(String msg) {
         showLoading(false);
+        populateData(new ArrayList<Quake>());
         Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
       }
     });
