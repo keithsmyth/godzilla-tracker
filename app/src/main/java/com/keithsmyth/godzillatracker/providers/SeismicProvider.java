@@ -18,6 +18,7 @@ public class SeismicProvider {
 
   private final RestAdapter mRestAdapter;
   private SeismicService mSeismicService;
+  private Seismic mSeismicCache;
 
   public SeismicProvider() {
     mRestAdapter = new RestAdapter.Builder()
@@ -38,8 +39,11 @@ public class SeismicProvider {
    * @param callback generic {@code Callback} to facilitate success and fail scenarios
    */
   public void getRecentQuakes(final Callback<Seismic> callback) {
+    if (mSeismicCache != null) callback.onSuccess(mSeismicCache);
+
     getSeismicService().getRecentQuakes(new retrofit.Callback<Seismic>() {
       @Override public void success(Seismic seismic, Response response) {
+        mSeismicCache = seismic;
         callback.onSuccess(seismic);
       }
 
